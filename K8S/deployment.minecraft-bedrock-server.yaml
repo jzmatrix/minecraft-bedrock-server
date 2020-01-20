@@ -4,8 +4,9 @@ metadata:
   namespace: utilities
   name: minecraft-bedrock-server
 spec:
-  replicas:
-    1
+  replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: minecraft-bedrock-server
