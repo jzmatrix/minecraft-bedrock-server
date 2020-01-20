@@ -29,7 +29,7 @@ spec:
       volumes:
         - name: minecraft-mount
           hostPath:
-            path: /STORAGE/WebSites/api.ziemba.net
+            path: /STORAGE/K8S/Utilities/minecraft-bedrock-server
             type: DirectoryOrCreate
       nodeName: rancher-1
 ---
