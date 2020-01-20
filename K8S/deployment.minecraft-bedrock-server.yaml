@@ -47,7 +47,7 @@ spec:
     protocol: UDP
     port: 19132
     targetPort: 19132
-    externalTrafficPolicy: Local
+  externalTrafficPolicy: Local
   type: LoadBalancer
   externalIPs:
   - 172.93.49.159
