@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: utilities
+  name: minecraft-bedrock-server
+spec:
+  replicas:
+    1
+  selector:
+    matchLabels:
+      app: minecraft-bedrock-server
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: minecraft-bedrock-server
+    spec:
+      imagePullSecrets:
+        - name: pipeline-docker-registry
+      containers:
+      - image: ${CICD_IMAGE}:${CICD_GIT_BRANCH}
+        name: minecraft-bedrock-server
+        ports:
+        - containerPort: 19132
+        volumeMounts:
+          - mountPath: "/opt/minecraft_server/worlds"
+            name: minecraft-mount
+            readOnly: false
+      volumes:
+        - name: minecraft-mount
+          hostPath:
+            path: /STORAGE/WebSites/api.ziemba.net
+            type: DirectoryOrCreate
+      nodeName: rancher-1
+---
+kind: Service
+apiVersion: v1
+metadata:
+  namespace: utilities
+  name: minecraft-bedrock-server
+spec:
+  selector:
+    app: minecraft-bedrock-server
+  ports:
+  - name: minecraft-bedrock-server-udp
+    protocol: UDP
+    port: 19132
+    targetPort: 19132

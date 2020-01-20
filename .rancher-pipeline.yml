@@ -1,0 +1,13 @@
+stages:
+- name: Build Image
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: ${CICD_GIT_REPO_NAME}:${CICD_GIT_BRANCH}
+- name: Deploy App
+  steps:
+  - applyYamlConfig:
+      path: ./K8S/deployment.minecraft-bedrock-server.yaml
+timeout: 60
+notification: {}
