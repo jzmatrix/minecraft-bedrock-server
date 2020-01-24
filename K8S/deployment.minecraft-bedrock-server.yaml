@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: utilities
+  namespace: zhrancher
   name: minecraft-bedrock-server
 spec:
   replicas: 1
@@ -37,7 +37,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: utilities
+  namespace: zhrancher
   name: minecraft-bedrock-server
 spec:
   selector:
