@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: zhrancher
+  namespace: utilities
   name: minecraft-bedrock-server
 spec:
   replicas: 1
@@ -19,7 +19,7 @@ spec:
       imagePullSecrets:
         - name: pipeline-docker-registry
       containers:
-      - image: ${CICD_IMAGE}:${CICD_GIT_BRANCH}
+      - image: ${CICD_IMAGE}:${CICD_EXECUTION_ID}
         name: minecraft-bedrock-server
         ports:
         - containerPort: 19132
@@ -37,7 +37,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  namespace: zhrancher
+  namespace: utilities
   name: minecraft-bedrock-server
 spec:
   selector:
