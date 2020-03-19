@@ -1,6 +1,7 @@
 FROM ubuntu:18.04
 ################################################################################
-COPY files/bedrock-server-1.14.1.4.zip /opt/minecraft_server.zip
+# https://minecraft.azureedge.net/bin-linux/bedrock-server-1.14.32.1.zip
+COPY files/bedrock-server-1.14.32.1.zip /opt/minecraft_server.zip
 ################################################################################
 RUN apt-get update && \
 	apt-get -y upgrade && \
